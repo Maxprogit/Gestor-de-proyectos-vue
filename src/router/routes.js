@@ -20,6 +20,7 @@ const Typography = () =>
   const Users = () => import(/* webpackChunkName: "common" */ "@/pages/Users.vue");
 const TableList = () =>
   import(/* webpackChunkName: "common" */ "@/pages/TableList.vue");
+const Registro = () => import(/* webpackChunkName: "common" */ "@/pages/Registro.vue");
 
 const routes = [
   {
@@ -76,7 +77,12 @@ const routes = [
         path: "users",
         name: "users",
         component: Users,
-      }
+      },
+      {
+        path: "registro",
+        name: "registro",
+        component: Registro,
+      },
     ],
   },
   { path: "*", component: NotFound },

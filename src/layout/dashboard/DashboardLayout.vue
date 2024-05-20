@@ -57,6 +57,11 @@
           :name="$t('sidebar.rtlSupport')"
           icon="tim-icons icon-world"
         />
+        <sidebar-link
+          to="/registro"
+          :name="$t('sidebar.registro')"
+          icon="tim-icons icon-key-25"
+        />
       </template>
     </side-bar>
     <div class="main-panel">

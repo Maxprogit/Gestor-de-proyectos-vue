@@ -2,6 +2,13 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 
+
+
+// Middleware de analisis de cuerpo
+app.use(express.json()); // Para analizar solicitudes de cuerpo en formato JSON
+app.use(express.urlencoded({ extended: true })); // Para analizar solicitudes con cuerpo en formato de formulario
+
+
 // Middleware de CORS
 app.use(cors());
 
@@ -23,6 +30,18 @@ app.get('/api/usuarios', async (req, res) => {
   } catch (error) {
     console.error('Error al obtener usuarios:', error)
     res.status(500).json({ error: 'Error al obtener usuarios' })
+  }
+});
+
+app.post('/api/registro', async (req, res) => {
+  try {
+    const { name, email, password } = req.body; // Cambia a email y password
+    // Llama al procedimiento almacenado InsertUsuario
+    const reg = await sql.query`EXEC InsertUsuario @UserName=${name}, @UserEmail=${email}, @UserPassword=${password}`; // Cambia a email y password
+    res.status(201).json({ mensaje: 'Registro exitoso' });
+  } catch (error) {
+    console.error('No se pudo completar el registro', error);
+    res.status(500).json({ error: 'No se pudo completar el registro' });
   }
 });
 
